@@ -10,10 +10,7 @@ const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
-//index route
-app.get("/", function(req, res){
-  res.render("index", {title: "Home"})
-})
+
 /* ***********************
  * view Engine and Templates
  *************************/
@@ -25,7 +22,10 @@ app.set("layout", "./layouts/layout")
  * Routes
  *************************/
 app.use(static)
-
+//index route
+app.get("/", function(req, res){
+  res.render("index", {title: "Home"})
+})
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
