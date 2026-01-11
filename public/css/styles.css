@@ -4,3 +4,24 @@
 *:after {
   box-sizing: border-box;
 }
+:root {
+  --primary-color: #ACC8E5;
+  --secondary-color:#112A46;
+}
+.upgrades{
+    display: flex;
+    flex-direction: row;
+  }
+
+@media(min-width: 900px){
+  .delRev{
+    margin: 10px;
+  }
+  .delUp{
+    margin: 10px;
+  }
+  .info{
+    display: flex;
+    flex-direction: row;
+  }
+}
