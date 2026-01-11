@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz@6..72&display=swap');
 /******* Change Box Model ***************/
 *,
 *:before,
@@ -7,6 +8,10 @@
 :root {
   --primary-color: #ACC8E5;
   --secondary-color:#112A46;
+  font-family: "Newsreader", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 .upgrades{
     display: flex;
