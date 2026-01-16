@@ -3,3 +3,5 @@ INSERT INTO public.account (account_firstname, account_lastname, account_email, 
 VALUES ('Tony', 'Stark', 'tony@starkent.com', 'Iam1ronM@n');
 --change account type to Admin
 UPDATE public.account SET account_type = 'Admin' Where account_id = 1;
+--delete date from database
+DELETE FROM public.account Where account_id =1;
