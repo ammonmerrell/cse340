@@ -5,3 +5,5 @@ VALUES ('Tony', 'Stark', 'tony@starkent.com', 'Iam1ronM@n');
 UPDATE public.account SET account_type = 'Admin' Where account_id = 1;
 --delete date from database
 DELETE FROM public.account Where account_id =1;
+--Edit gm hummer 
+UPDATE public.inventory SET inv_description = REPLACE(inv_description, 'the small interiors', 'a huge interior');
