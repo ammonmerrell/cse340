@@ -11,3 +11,6 @@ UPDATE public.inventory SET inv_description = REPLACE(inv_description, 'the smal
 SELECT inventory.inv_make, inventory.inv_model
 FROM public.inventory INNER JOIN public.classification ON classification.classification_id = inventory.classification_id
 AND classification_name = 'Sport'
+--add vehicals in images and thubnails
+UPDATE public.inventory SET inv_image  = REPLACE(inv_image, '/images/', '/images/vehicles/'),
+inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
