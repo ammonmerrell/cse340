@@ -16,7 +16,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
         title: className + " vehicles",
     nav,
     grid,
-    })
+  })
 }
 
 module.exports = invCont
