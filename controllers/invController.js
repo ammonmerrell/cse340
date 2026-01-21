@@ -1,12 +1,12 @@
 const invModel = require("../models/inventory-model")
-const utilities = require("../utilities")
+const utilities = require("../utilities/")
 
 const invCont = {}
 
 /* *****
 * Build inventory by classification view
 * ***** */
-invCount.buildByClassificationId = async function (req, res, next){
+invCont.buildByClassificationId = async function (req, res, next){
     const classification_id = req.params.classification_id
     const data = await invModel.getInventoryByClassificationId(classification_id)
     const grid = await utilities.buildClassificationGrid(data)
