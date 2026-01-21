@@ -24,7 +24,7 @@ app.set("layout", "./layouts/layout")
  *************************/
 app.use(static)
 //index route
-app.get("/", baseController.buildHome)
+app.use("/", baseController.buildHome)
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
