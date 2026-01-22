@@ -28,7 +28,7 @@ app.use(static)
 // Inventory routes
 app.use("/inv", inventoryRoute)
 
-app.use("/", baseController.buildHome)
+app.get("/", baseController.buildHome)
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
