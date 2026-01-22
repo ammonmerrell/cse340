@@ -3,4 +3,12 @@
 <h1><%= title %></h1>
 <% } else {
   res.redirect('/')
-} %>
+} %> 
+
+<!-- error message -->
+<%- res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message: err.message,
+    nav 
+    %>
+})
