@@ -29,6 +29,10 @@ app.use(static)
 app.use("/inv", inventoryRoute)
 
 app.get("/", baseController.buildHome)
+// file not found route
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+})
 
 /* *****
 * Express Error Handler
