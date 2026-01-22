@@ -13,6 +13,8 @@ const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
 
+const utilities = require("./utilities/index.js")
+
 /* ***********************
  * view Engine and Templates
  *************************/
@@ -38,7 +40,6 @@ app.use(async (req, res, next) => {
 * Express Error Handler
 * Place after all other middleware
 ******* */
-// let utilities = Util 
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
