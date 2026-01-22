@@ -38,7 +38,7 @@ app.use(async (req, res, next) => {
 * Express Error Handler
 * Place after all other middleware
 ******* */
-let utilities = Util 
+// let utilities = Util 
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
