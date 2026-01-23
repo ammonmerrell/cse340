@@ -12,7 +12,7 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
-const singleView = require("./routes/singleViewRoute.js")
+
 
 const utilities = require("./utilities/index.js")
 
@@ -30,7 +30,6 @@ app.use(static)
 //index route
 // Inventory routes
 app.use("/inv", inventoryRoute)
-app.use("/inv", singleView)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // file not found route must be last route on page
