@@ -18,6 +18,8 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid,
   })
 }
+//I used the buildByClassificationId function to make buildByInd_id function.
+// the classification function variable will act as the inv_id in the getInfoByClassificationId function.
 invCont.buildByInv_id = async function (req, res, next) {
   const classification_id = req.params.classificationId
   const data = await invModel.getInfoByClassificationId(classification_id)
