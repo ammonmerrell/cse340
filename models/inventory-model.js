@@ -24,7 +24,7 @@ async function getInventoryByClassificationId(classification_id) {
     console.error("getclassificationsbyid error " + error)
   }
 }
-async function getInfoByClassificationId(classification_id) {
+async function getInfoByClassificationId(inv_id) {
   try {
     const data = await pool.query(
       `SELECT * FROM public.inventory AS i 
