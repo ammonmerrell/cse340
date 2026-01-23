@@ -28,8 +28,9 @@ invCont.buildByInv_id = async function (req, res, next) {
   const carYear = data[0].inv_year
   const carMake = data[0].inv_make
   const  carModel = data[0].inv_model
+  const carPrice = data[0].inv_price
   res.render("./inventory/details.ejs", {
-    title: carYear + " " + carMake + "  " + carModel,
+    title: carYear + " " + carMake + "  " + carModel+ "  $" +carPrice,
     nav,
     grid,
   })
