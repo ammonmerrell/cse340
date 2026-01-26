@@ -14,9 +14,8 @@ const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
 const session = require("express-session")
 const pool = require('./database/')
-
-
 const utilities = require("./utilities/index.js")
+const account = require("./routes/accountRoute")
 
 /* *****
 * Middleware
