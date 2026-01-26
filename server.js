@@ -22,7 +22,7 @@ const utilities = require("./utilities/index.js")
 * Middleware
 * ***** */
 app.use(session({
-  store: new (require(connect-pg-simple)(session))({
+  store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
     pool,
   }),
