@@ -12,6 +12,8 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
+const session = require("express-session")
+const pool = require('./database/')
 
 
 const utilities = require("./utilities/index.js")
