@@ -37,6 +37,14 @@ li{
 .notice{
   color: var(--accent-color);
 }
+.form input{
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.form{
+  background-color: var(--secondary-color);
+}
 @media(min-width: 900px){
   .delRev{
     margin: 10px;
