@@ -12,7 +12,7 @@ validate.registrationRules = () => {
           .trim()
           .escape()
           .notEmpty()
-          .isLength({ min: 1})
+          .isLength({ min: 1 })
           .withMessage("Please provide a first name."), //on error this message is sent.
 
         //lastname is req and must be string
@@ -20,7 +20,7 @@ validate.registrationRules = () => {
             .trim()
             .escape()
             .notEmpty()
-            .isLength({ min: 2})
+            .isLength({ min: 2 })
             .withMessage("Please provide a last name."), //on error this message is sent.
         
         //valid email must exist and not in database
