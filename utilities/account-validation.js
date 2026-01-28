@@ -5,7 +5,7 @@ const util = require(".")
 /* *****
 * Registeration Data Validation Rules
 * ***** */
-validate.registarionRules = () => {
+validate.registrationRules = () => {
     return [
         //Firstname is req and must be string
         body("account_firstname")
