@@ -13,15 +13,15 @@ validate.registarionRules = () => {
           .escape()
           .notEmpty()
           .isLength({ min: 1})
-          .withMessage("Please provide a first name.") //on error this message is sent.
+          .withMessage("Please provide a first name."), //on error this message is sent.
 
         //lastname is req and must be string
         body("account_lastname")
             .trim()
             .escape()
             .notEmpty()
-            .isLength({ min: 1})
-            .withMessage("Please provide a last name.") //on error this message is sent.
+            .isLength({ min: 2})
+            .withMessage("Please provide a last name."), //on error this message is sent.
         
         //valid email must exist and not in database
         body("account_email")
