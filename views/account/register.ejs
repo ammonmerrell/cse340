@@ -17,8 +17,8 @@
 <div class="register">
     <form action="/account/register" method="post">
         <p>First Name *<input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>"></p>
-        <p>Last Name *<input type="text" name="account_lastname" required value="<%= locals.account_lastname %>"></p>
-        <p>Email *<input type="email" name="account_email" required value="<%= locals.account_email %>"></p>
+        <p>Last Name *<input type="text" name="account_lastname" id="accountLastname" required value="<%= locals.account_lastname %>"></p>
+        <p>Email *<input type="email" name="account_email" id="accountEmail" required value="<%= locals.account_email %>"></p>
         <div>Password must be 12 characters, at least 1 uppercase, 1 number, 1 speacial character.
         <p>Password *<input type="password" name="account_password" placeholder="Must be 12 char,1 cap,1 num,1 special." pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required></p></div>
         <input type="submit" name="Register">
