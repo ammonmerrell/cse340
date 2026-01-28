@@ -24,6 +24,12 @@ a:visited{
 h1, footer{
   color: var(--accent-color);
 }
+input:required:invalid, input:focus:invalid {
+  background-color: red;
+}
+input:required:valid {
+  background-color: green;
+}
 .upgrades{
     display: flex;
     flex-direction: row;
