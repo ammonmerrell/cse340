@@ -14,5 +14,11 @@ router.post(
   regValidate.checkRegData,
   util.handleErrors(accController.registerAccount)
 )
-
+// process the  login attempt
+router.post(
+  "/login",
+  (req, res) => {
+    res.status(200).send('login process')
+  }
+)
 module.exports = router;
