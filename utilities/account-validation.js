@@ -45,7 +45,7 @@ validate.registrationRules = () => {
             })
             .withMessage("Password does not meet requirements."),
     ]
-}
+  }
 
 
 /* *****
