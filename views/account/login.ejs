@@ -7,7 +7,7 @@
 
 <%- messages() %>
 <div class="form">
-<form>
+<form id="loginForm" action="/account/login" method="post">
     <p>email <input type="email" name="account_email" placeholder="email/username" required></p>
     <div>Password must be 12 characters, at least 1 uppercase, 1 number, 1 speacial character.<input type="password" name="account_password" placeholder="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"></div>
     <label>Password <input type="submit" name="login" required placeholder=""></label>
