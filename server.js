@@ -16,6 +16,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const utilities = require("./utilities/index.js")
 const account = require("./routes/accountRoute")
+const bodyParser = require("body-parser")
 
 /* *****
 * Middleware
@@ -38,7 +39,8 @@ app.use(function(req,res,next){
   next()
 })
 
-
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 /* ***********************
  * view Engine and Templates
