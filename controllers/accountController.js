@@ -54,4 +54,4 @@ async function registerAccount(req, res){
         })
     }
 }
-module.exports = {buildLogin, registerUser}
+module.exports = {buildLogin, registerUser, registerAccount}
