@@ -25,10 +25,14 @@ h1, footer{
   color: var(--accent-color);
 }
 input:required:invalid, input:focus:invalid {
-  background-color: red;
+  background-image: url(/images/invalid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
 }
 input:required:valid {
-  background-color: green;
+  background-image: url(/images/valid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
 }
 .upgrades{
     display: flex;
