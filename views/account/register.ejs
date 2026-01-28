@@ -11,7 +11,8 @@
         <p>First Name *<input type="text" name="account_firstname" required></p>
         <p>Last Name *<input type="text" name="account_lastname" required></p>
         <p>Email *<input type="email" name="account_email" required></p>
-        <p>Password *<input type="password" name="account_password" placeholder="Must be 12 char,1 cap,1 num,1 special." pattern=".{12,}" required></p>
+        <div>Password must be 12 characters, at least 1 uppercase, 1 number, 1 speacial character.
+        <p>Password *<input type="password" name="account_password" placeholder="Must be 12 char,1 cap,1 num,1 special." pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required></p></div>
         <input type="submit" name="Register">
     </form>
 </div>
