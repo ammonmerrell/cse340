@@ -58,13 +58,13 @@ invCont.buildClassificationName = async function (req, res, next) {
 *  Process classification Name
 * *************************************** */
 invCont.addClasificationName = async function (req, res, next) {
-  let nav = await utilities.getNav()
   let links = await utilities.buildInvManager()
   const { classification_name} = req.body
 
   const regResult = await invModel.addClasificationName(
     classification_name
   )
+  let nav = await utilities.getNav()
 
   if (regResult) {
     req.flash(
