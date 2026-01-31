@@ -88,6 +88,13 @@ Util.buildIdGrid = async function(data){
     return grid
 }
 
+Util.buildInvManager = async function (req, res, next) {
+    let list = "<ul>"
+    list += '<li><a href="/inv/add-classification.ejs" title="Add New Classification">Home</a></li>'
+    list += "</ul>"
+    return list
+}
+
 /* *****
 * Middleware For Handleing Errors
 * wrap other function in this for 
