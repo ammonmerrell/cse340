@@ -50,7 +50,39 @@ invCont.buildClassificationName = async function (req, res, next) {
   res.render("inventory/add-classification.ejs", {
     title: "Classification Form",
     nav,
+    errors: null,
   })
+}
+
+/* ****************************************
+*  Process classification Name
+* *************************************** */
+invCont.addClasificationName = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  let links = await utilities.buildInvManager()
+  const { classification_name} = req.body
+
+  const regResult = await invModel.addClasificationName(
+    classification_name
+  )
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `New classification ${classification_name} added sucsessfully.`
+    )
+    res.status(201).render("inventory/management", {
+      title: "Inventory Manager",
+      nav,
+      links,
+    })
+  } else {
+    req.flash("notice", "Sorry, failed to add classification.")
+    res.status(501).render("inventory/add-classification", {
+      title: "Classification Form",
+      nav,
+    })
+  }
 }
 
   module.exports = invCont
