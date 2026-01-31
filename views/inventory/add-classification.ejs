@@ -7,4 +7,5 @@
 <%- messages() %>
 <form id="addClasification" action="inventory/add-classification.ejs" method="post">
     <p>New Classification: <input type="text" name="classification_name" id="classificationName" required value ="<%= locals.classification_name %>" pattern="(?!.*\s)"></p>
+    <input type="submit" name="Add Classification">
 </form>
