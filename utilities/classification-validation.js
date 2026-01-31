@@ -10,11 +10,10 @@ validate.classnameRules = () => {
     return [
         //name has no spaces
         body("classification_name")
-        .trim()
-        .escape()
-        .notEmpty()
-        .isLength({min: 1 })
-        .withMessage("Please provide a classification name."),
+          .trim()
+          .isLength({ min: 1 })
+          .isAlpha()
+          .withMessage("Please provide a classification name."),
     ]
 }
 
