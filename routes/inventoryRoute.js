@@ -10,7 +10,7 @@ router.get("/detail/:classificationId", util.handleErrors(invController.buildByI
 router.get("/", util.handleErrors(invController.buildInventoryManager))
 router.get("/add-classification", util.handleErrors(invController.buildClassificationName))
 router.post(
-    "/add-classification", 
+    "/", 
     regValidate.classnameRules(), 
     regValidate.checkRegData, 
     util.handleErrors(invController.addClasificationName)
