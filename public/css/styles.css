@@ -21,7 +21,7 @@ a:visited{
   color: var(--primary-color);
   background-color: var(--secondary-color);
 }
-h1, footer{
+h1, p, div, footer{
   color: var(--accent-color);
 }
 input:required:invalid, input:focus:invalid {
