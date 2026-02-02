@@ -39,10 +39,10 @@ async function getInfoByClassificationId(inv_id) {
   }
 }
 
-async function addInventoryItem(account_firstname, account_lastname, account_email, account_password){
+async function addInventoryItem(inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color){
   try {
-    const sql = "INSERT INTO account (account_firstname, account_lastname, account_email, account_password, account_type) VALUES ($1, $2, $3, $4, 'Client') RETURNING *"
-    return await pool.query(sql, [account_firstname, account_lastname, account_email, account_password])
+    const sql = "INSERT INTO inventory (inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color) VALUES ($1, $2, $3, $4, '/images/vehicles/no-image.png', '/images/vehicles/no-image-tn.jpg', $5, $6, $7) RETURNING *"
+    return await pool.query(sql, [inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color])
   } catch (error) {
     return error.message
   }
@@ -60,4 +60,4 @@ async function addClasificationName(classification_name){
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInfoByClassificationId, addClasificationName};
+module.exports = {getClassifications, getInventoryByClassificationId, getInfoByClassificationId, addClasificationName, addInventoryItem};
