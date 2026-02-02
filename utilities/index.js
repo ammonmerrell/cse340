@@ -108,7 +108,7 @@ Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)
 /* *****
 * Middleware to check token validity
 * ***** */
-util.checkJWTToken = (req, res, next) =>  {
+Util.checkJWTToken = (req, res, next) =>  {
     if (req.cookies.jwt) {
         jwt.verify(
             req.cookies.jwt,
