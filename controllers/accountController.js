@@ -75,6 +75,15 @@ async function registerAccount(req, res){
     }
 }
 
+async function buildAccReg(req, res) {
+    let nav = await util.getNav();
+    res.render("account/account-register", {
+        title: "You're logged in.",
+        nav,
+        errors: null,
+
+})
+}
 /* *****
 * Process login request
 * ***** */
@@ -118,4 +127,4 @@ async function accountLogin(req, res) {
     
     }
 
-module.exports = {buildLogin, registerUser, registerAccount, accountLogin}
+module.exports = {buildLogin, registerUser, registerAccount, accountLogin, buildAccReg}
