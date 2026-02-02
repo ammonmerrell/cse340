@@ -99,18 +99,23 @@ async function accountLogin(res, req) {
             if(process.env.NODE_ENV === 'development') {
                 res.cookie("jwt", accessToken { httpOnly: true, maxAge: 3600 * 1000})
             } else {
-                req.flash("message notice", "Please check your credencials and try again.")
-                res.status(400).render("account/login", {
-                    title: "Login",
-                    nav,
-                    errors: null,
-                    account_email,
-                })
+                res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
             }
-     catch (error) {
+            return res.redirect("/account/")
+        }
+        else {
+            req.flash("message notice", "Please check your credencials and try again.")
+            res.status(400).render("account/login", {
+                title: "Login",
+                nav,
+                errors: null,
+                account_email,
+            })
+        } 
+    } catch (error) {
             throw new Error('Acces Forbidden')
         }
+    
     }
-}
 
 module.exports = {buildLogin, registerUser, registerAccount, accountLogin}
