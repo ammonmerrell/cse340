@@ -78,7 +78,7 @@ async function registerAccount(req, res){
 /* *****
 * Process login request
 * ***** */
-async function accountLogin(res, req) {
+async function accountLogin(req, res) {
     let nav = await util.getNav()
     const { account_email, account_password } = req.body
     const accountData = await accountModel.getAccountByEmail(account_email)
