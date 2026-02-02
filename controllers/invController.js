@@ -101,7 +101,7 @@ invCont.addInventoryName = async function (req, res, next) {
   let links = await utilities.buildInvManager()
   const { inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color} = req.body
 
-  const regResult = await invModel.addInventoryName(
+  const regResult = await invModel.addInventoryItem(
     inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color
   )
   let nav = await utilities.getNav()
