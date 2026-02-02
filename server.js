@@ -32,6 +32,7 @@ const cookieParser = require("cookie-parser")
   name: 'sessionId',
 }))
 app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 //Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req,res,next){
