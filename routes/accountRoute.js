@@ -13,9 +13,10 @@ router.post(
   "/register", 
   regValidate.registrationRules(),
   regValidate.checkRegData,
-  util.handleErrors(accController.registerAccount)
+  util.handleErrors(accController.buildAccReg)
 )
 // process the  login attempt
+
 // router.post(
 //   "/login",
 //   regValidate.registrationRules(),
@@ -25,6 +26,7 @@ router.post(
 
 router.post(
   "/login",
-  util.handleErrors(accController.accountLogin))
+  util.handleErrors(accController.buildAccReg)
+)
 
 module.exports = router;
