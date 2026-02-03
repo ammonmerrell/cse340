@@ -19,7 +19,7 @@ router.post(
 
 // router.post(
 //   "/login",
-//   regValidate.registrationRules(),
+//   regValidate.loginRules(),
 //   regValidate.checkLoginData,
 //   util.handleErrors(accController.accountLogin)
 // )
