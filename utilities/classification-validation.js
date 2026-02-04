@@ -40,6 +40,7 @@ validate.loginRules = () => {
 * Check data and return errors on continue to add classification
 * ***** */
 validate.checkRegData = async (req, res, next) => {
+  let links = await util.buildInvManager()
     const { classification_name } = req.body
     let errors = []
     errors = validationResult(req)
@@ -50,6 +51,7 @@ validate.checkRegData = async (req, res, next) => {
             title: "Inventory Management",
             nav,
             classification_name,
+            links,
         })
         return
     }

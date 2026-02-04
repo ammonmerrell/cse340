@@ -90,6 +90,7 @@ invCont.addClasificationName = async function (req, res, next) {
     res.status(501).render("inventory/add-classification", {
       title: "Classification Form",
       nav,
+      links,
     })
   }
 }
