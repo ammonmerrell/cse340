@@ -14,20 +14,20 @@ router.post(
   "/register", 
   regValidate.registrationRules(),
   regValidate.checkRegData,
-  util.handleErrors(accController.buildAccReg)
+  util.handleErrors(accController.registerAccount)
 )
 // process the  login attempt
 
-// router.post(
-//   "/login",
-//   regValidate.loginRules(),
-//   regValidate.checkLoginData,
-//   util.handleErrors(accController.accountLogin)
-// )
-
 router.post(
   "/login",
-  util.handleErrors(accController.buildAccReg)
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  util.handleErrors(accController.accountLogin)
 )
+
+// router.post(
+//   "/login",
+//   util.handleErrors(accController.buildAccReg)
+// )
 
 module.exports = router;
