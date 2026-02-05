@@ -12,6 +12,7 @@ async function  buildLogin(req,res, next) {
     res.render("account/login", {
         title: "login",
         nav,
+        errors: null,
     })    
 }
 
