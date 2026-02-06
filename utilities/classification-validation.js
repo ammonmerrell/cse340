@@ -17,25 +17,21 @@ validate.classnameRules = () => {
     ]
 }
 
-validate.loginRules = () => {
+/* *****
+* inventory name data validation rules
+***** */
+validate.inventoryRules = () => {
     return [
-        body("account_email")
-                    .trim()
-                    .escape()
-                    .notEmpty()
-                    .isEmail()
-                    .normalizeEmail() //refer to validator.js docs
-                    .withMessage("A valid email is required.")
-                    .custom(async (account_email) => {
-                      const emailExists = await accountModel.checkExistingEmail(account_email)
-                      if (emailExists){
-                        
-                      }else {
-                        throw new Error("Email dosen't exist. Please log in using correct email")
-                      }
-                    }),
+        //name has no spaces
+        body("inv_make")
+          .trim()
+          .isLength({ min: 1 })
+          .isAlpha()
+          .withMessage("Please provide a classification name."),
     ]
 }
+
+
 /* *****
 * Check data and return errors on continue to add classification
 * ***** */
@@ -44,34 +40,47 @@ validate.checkRegData = async (req, res, next) => {
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
-        let nav = await util.getNav()
+        let nav = await util.getNav()         
         let links = await util.buildInvManager()
-        res.render("inventory/management", {
+        res.render("inventory/add-classification", {
             errors,
-            title: "Inventory Management",
+            title: "Inventory Managementa",
             nav,
-            classification_name,
+            // classification_name,
             links,
         })
         return
     }
     next()
 }
-
-validate.checkLoginData = async (req, res, next) => {
-  const { account_email, account_password } = req.body
-  let errors = []
-  errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    let nav = await util.getNav()
-    res.render("account/login", {
-      errors,
-      title: "Login",
-      nav,
-    })
-    return
-  }
-  next()
+/* *****
+* Inventory and show results
+* *****/
+validate.checkInvData = async (req, res, next) => {
+    const { inv_make, inv_model, inv_year, inv_desc, inv_price, inv_miles, inv_color } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await util.getNav()         
+        // let links = await util.buildInvManager()
+        res.render("inventory/add-classification", {
+            errors,
+            title: "Inventory Management",
+            nav,
+            inv_model,
+            inv_make,
+            inv_year,
+            inv_desc,
+            inv_price,
+            inv_miles,
+            inv_color,
+            // classification_name,
+            // links,
+        })
+        return
+    }
+    next()
 }
+
 
 module.exports = validate
