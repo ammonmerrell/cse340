@@ -110,7 +110,7 @@ invCont.addInventoryName = async function (req, res, next) {
   if (regResult) {
     req.flash(
       "notice",
-      `New item ${inv_make} added sucsessfully.`
+      `New item ${inv_make, inv_model} added sucsessfully.`
     )
     res.status(201).render("inventory/management", {
       title: "Inventory Manager",
