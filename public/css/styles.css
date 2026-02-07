@@ -64,6 +64,14 @@ li{
 .register p{
   color: var(--accent-color)
 }
+#inventoryDisplay{
+  background-color: var(--primary-color);
+}
+#inventoryDisplay tr{
+  margin: 10px;
+  background-color: var(--secondary-color);
+
+}
 @media(min-width: 900px){
   .delRev{
     margin: 10px;
