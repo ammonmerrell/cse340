@@ -30,6 +30,19 @@ validate.inventoryRules = () => {
           .withMessage("Please provide a classification name."),
     ]
 }
+/* *****
+* update inventory name data validation rules
+***** */
+validate.inventoryNewRules = () => {
+    return [
+        //name has no spaces
+        body("inv_make")
+          .trim()
+          .isLength({ min: 1 })
+          .isAlpha()
+          .withMessage("Please provide a classification name."),
+    ]
+}
 
 
 /* *****
