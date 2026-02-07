@@ -38,13 +38,13 @@ invCont.buildByInv_id = async function (req, res, next) {
 
 invCont.buildInventoryManager = async function (req, res, next) {
   let nav = await utilities.getNav()
-  const classificationSelect = await utilities.buildInvManager()
-
+  const classification = await utilities.buildClassificationList()
   let links = await utilities.buildInvManager()
   res.render("inventory/management.ejs", {
     title: "Inventory Manager",
     nav,
     links,
+    classification,
   })
 }
 invCont.buildClassificationName = async function (req, res, next) {
@@ -76,6 +76,7 @@ invCont.addClasificationName = async function (req, res, next) {
     classification_name
   )
   let nav = await utilities.getNav()
+  const classification = await utilities.buildClassificationList()
 
   if (regResult) {
     req.flash(
@@ -86,13 +87,14 @@ invCont.addClasificationName = async function (req, res, next) {
       title: "Inventory Manager",
       nav,
       links,
+      classification,
     })
   } else {
     req.flash("notice", "Sorry, failed to add classification.")
     res.status(501).render("inventory/add-classification", {
       title: "Classification Form",
       nav,
-      links,
+      errors,
     })
   }
 }
@@ -102,6 +104,7 @@ invCont.addClasificationName = async function (req, res, next) {
 * *************************************** */
 invCont.addInventoryName = async function (req, res, next) {
   let links = await utilities.buildInvManager()
+  const classification = await utilities.buildClassificationList()
   const { inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color} = req.body
 
   const regResult = await invModel.addInventoryItem(
@@ -118,6 +121,7 @@ invCont.addInventoryName = async function (req, res, next) {
       title: "Inventory Manager",
       nav,
       links,
+      classification,
     })
   } else {
     req.flash("notice", "Sorry, failed to add classification.")
