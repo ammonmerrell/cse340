@@ -65,6 +65,65 @@ invCont.buildinventoryName = async function (req, res, next) {
   })
 }
 
+
+/* ****************************************
+*  update inventory Name
+* *************************************** */
+invCont.updateInventory = async function (req, res, next) {
+  let links = await utilities.buildInvManager()
+  const classification = await utilities.buildClassificationList()
+  const { 
+    inv_id,
+    inv_make, 
+    inv_model, 
+    inv_description, 
+    inv_price, 
+    inv_year,
+    inv_miles, 
+    inv_color,
+    classification_id,
+  } = req.body
+
+  const updateResult = await invModel.updateInventoryItem(
+    inv_id,
+    inv_make, 
+    inv_model, 
+    inv_description, 
+    inv_price, 
+    inv_year,
+    inv_miles, 
+    inv_color,
+    classification_id,
+  )
+  let nav = await utilities.getNav()
+
+  if (updateResult) {
+    const itemName = updateResult.inv_make +" "+ updateResult.inv_model;
+    req.flash(
+      "notice",
+      `The item ${itemName} updated sucsessfully.`
+    )
+    res.redirect("/inv/")
+  } else {
+    const itemName = `${inv_make} ${inv_model}`
+    req.flash("notice", "Sorry, failed to update inventory item.")
+    res.status(501).render("inventory/edit-inventory", {
+      title: "edit " + itemName,
+      nav,
+      classification,
+      errors: null,
+      iinv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_price,
+      inv_miles,
+      inv_color,
+      inv_classification_id,
+    })
+  }
+}
 /* ****************************************
 *  Process classification Name
 * *************************************** */
@@ -100,7 +159,7 @@ invCont.addClasificationName = async function (req, res, next) {
 }
 
 /* ****************************************
-*  Process classification Name
+*  Process inventory Name
 * *************************************** */
 invCont.addInventoryName = async function (req, res, next) {
   let links = await utilities.buildInvManager()
