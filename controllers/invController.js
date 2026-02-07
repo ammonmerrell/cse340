@@ -150,33 +150,61 @@ invCont.getInventoryJSON = async (req, res, next) => {
 /* ****************************************
 *  edit inventory Name
 * *************************************** */
+// invCont.editInventory = async function (req, res, next) {
+//   const inv_id = parseInt(req.params.inv_id)
+//   const data = await invModel.getInfoByClassificationId(inv_id)
+//   const grid = await utilities.buildIdGrid(data)
+//   let nav = await utilities.getNav()
+//   const classification = await utilities.buildClassificationList()
+//   const inv_year = data[0].inv_year
+//   const inv_make = data[0].inv_make
+//   const  inv_model = data[0].inv_model
+//   const inv_price = data[0].inv_price
+//   res.render("./inventory/edit-inventory.ejs", {
+//     title:  carMake + "  " + carModel,
+//     nav,
+//     // data
+//     classification,
+//     errors: null,
+//     inv_id,
+//     inv_make,
+//     inv_model,
+//     inv_year,
+//     inv_description,
+//     inv_image,
+//     inv_thumbnail,
+//     inv_price,
+//     inv_miles,
+//     inv_color,
+//     classification_id,
+//   })
+// }
+
+/* ***************************
+ *  Build edit inventory view
+ * ************************** */
 invCont.editInventory = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id)
-  const data = await invModel.getInfoByClassificationId(inv_id)
-  const grid = await utilities.buildIdGrid(data)
   let nav = await utilities.getNav()
-  const classification = await utilities.buildClassificationList()
-  const carYear = data[0].inv_year
-  const carMake = data[0].inv_make
-  const  carModel = data[0].inv_model
-  const carPrice = data[0].inv_price
+  const itemData = await invModel.getInfoByClassificationId(inv_id)
+  const classification = await utilities.buildClassificationList(itemData.classification_id)
+  const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
   res.render("./inventory/edit-inventory.ejs", {
-    title:  carMake + "  " + carModel,
+    title: "Edit " + itemName,
     nav,
-    // data
     classification,
     errors: null,
-    inv_id,
-    inv_make,
-    inv_model,
-    inv_year,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_miles,
-    inv_color,
-    classification_id,
+    inv_id: itemData[0].inv_id,
+    inv_make: itemData[0].inv_make,
+    inv_model: itemData[0].inv_model,
+    inv_year: itemData[0].inv_year,
+    inv_description: itemData[0].inv_description,
+    inv_image: itemData[0].inv_image,
+    inv_thumbnail: itemData[0].inv_thumbnail,
+    inv_price: itemData[0].inv_price,
+    inv_miles: itemData[0].inv_miles,
+    inv_color: itemData[0].inv_color,
+    classification_id: itemData[0].classification_id
   })
 }
   module.exports = invCont
