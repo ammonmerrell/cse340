@@ -1,3 +1,4 @@
+const { updateInventory } = require("../controllers/invController")
 const pool = require("../database/")
 
 /* **********
@@ -60,4 +61,35 @@ async function addClasificationName(classification_name){
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInfoByClassificationId, addClasificationName, addInventoryItem};
+async function updateInventoryItem(
+  inv_id,
+  inv_make, 
+  inv_model, 
+  inv_year, 
+  inv_description, 
+  inv_price,
+  inv_miles, 
+  inv_color,
+  classification_id,
+){
+  try {
+    const sql = 
+    "UPDATE public.inventory SET imv_make = $1, inv_model = $2, inv_year = $3, inv_description = $4, inv_price = $5, inv_miles $6, inv_color = $7, classification_id = $8 WHERE inv_id = $9 RETURNING *"
+    const data = await pool.query(sql, [
+    inv_make, 
+    inv_model, 
+    inv_year, 
+    inv_description, 
+    inv_price,
+    inv_miles, 
+    inv_color,
+    classification_id,
+    inv_id,
+])
+return data.rows[0]
+  } catch (error) {
+    console.error("model error: "+ error)
+  }
+}
+
+module.exports = {getClassifications, getInventoryByClassificationId, getInfoByClassificationId, addClasificationName, addInventoryItem, updateInventoryItem};
