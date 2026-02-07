@@ -26,4 +26,7 @@
     <div>Name must not have spaces or any speical characters.<p>Vehicle Miles: <input type="text" name="inv_miles" id="invMiles" required value ="<%= locals.inv_miles %>" pattern="/^[A-Za-z\s]+$/"></p></div>
     <div>Name must not have special characters.<p>Vehicle Color: <input type="text" name="inv_color" id="invColor" required value ="<%= locals.inv_color %>" pattern="/^[A-Za-z\s]+$/"></p></div>
     <input type="submit" name="Edit Classification" value="Update Vehicle">
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+<% } % >>
 </form>
