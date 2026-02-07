@@ -25,6 +25,6 @@
     <div>Name must not have special characters.<p>Vehicle Color: <input type="text" name="inv_color" id="invColor" required value ="<%= locals.inv_color %>" pattern="/^[A-Za-z\s]+$/"></p></div>
     <input type="submit" name="Add Classification">
     <input type="hidden" name="inv_id"
-<% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
-<% } %>>
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
 </form>
