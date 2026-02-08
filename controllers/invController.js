@@ -74,26 +74,30 @@ invCont.updateInventory = async function (req, res, next) {
   const classification = await utilities.buildClassificationList()
   const { 
     inv_id,
-    inv_make, 
-    inv_model, 
-    inv_year, 
-    inv_description, 
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
     inv_price,
-    inv_miles, 
+    inv_year,
+    inv_miles,
     inv_color,
-    classification_id,
+    classification_id
   } = req.body
 
   const updateResult = await invModel.updateInventoryItem(
     inv_id,
-    inv_make, 
-    inv_model, 
-    inv_year, 
-    inv_description, 
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
     inv_price,
-    inv_miles, 
+    inv_year,
+    inv_miles,
     inv_color,
-    classification_id,
+    classification_id
   )
   let nav = await utilities.getNav()
 
@@ -122,7 +126,7 @@ invCont.updateInventory = async function (req, res, next) {
       inv_price,
       inv_miles,
       inv_color,
-      classification_id,
+      classification_id
     })
   }
 }
