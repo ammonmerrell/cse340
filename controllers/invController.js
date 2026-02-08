@@ -108,19 +108,21 @@ invCont.updateInventory = async function (req, res, next) {
     const itemName = `${inv_make} ${inv_model}`
     req.flash("notice", "Sorry, failed to update inventory item.")
     res.status(501).render("inventory/edit-inventory", {
-      title: "edit " + itemName,
-      nav,
-      classification,
-      errors: null,
-      inv_id,
-      inv_make,
-      inv_model,
-      inv_year,
-      inv_description,
-      inv_price,
-      inv_miles,
-      inv_color,
-      inv_classification_id,
+      title: "Edit " + itemName,
+    nav,
+    classification: classification,
+    errors: null,
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
     })
   }
 }
