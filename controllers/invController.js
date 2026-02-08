@@ -70,11 +70,14 @@ invCont.buildinventoryName = async function (req, res, next) {
 ****** */
 invCont.errorType500 = async function (req, res, next) {
     let nav = await utilities.getNav()
-    req.flash("notice","500 error")
-    res.status(500).render("error/error.ejs", {
-    title: "this.errorType500",
+  let classification = await utilities.buildClassificationList()
+  let links = await utilities.buildInvManager()
+  req.flash("alert", "a 500 error")
+  res.status(500).render("inventory/management", {
+    title: "500 Error",
     nav,
-    message: "a",
+    classification,
+    links,
   })
 }
 
