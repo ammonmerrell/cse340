@@ -65,6 +65,19 @@ invCont.buildinventoryName = async function (req, res, next) {
   })
 }
 
+/*****
+ * Error function
+****** */
+invCont.errorType500 = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    req.flash("notice","500 error")
+    res.status(500).render("error/error.ejs", {
+    title: "this.errorType500",
+    nav,
+    message: "a",
+  })
+}
+
 
 /* ****************************************
 *  update inventory Name
