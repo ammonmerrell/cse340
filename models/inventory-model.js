@@ -1,4 +1,3 @@
-const { updateInventory } = require("../controllers/invController")
 const pool = require("../database/")
 
 /* **********
