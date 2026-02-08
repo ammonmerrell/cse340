@@ -112,7 +112,7 @@ invCont.updateInventory = async function (req, res, next) {
       nav,
       classification,
       errors: null,
-      iinv_id,
+      inv_id,
       inv_make,
       inv_model,
       inv_year,
