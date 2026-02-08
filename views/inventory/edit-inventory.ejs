@@ -17,7 +17,7 @@
 <% } %>
 
 <!-- I had to use google to figure out the patterns  -->
-<form id="editInventory" action="/inv/edit-inventory" method="post">
+<form id="updateForm" action="/inv/edit-inventory" method="post">
     <div>Name can not have speical characters.<p>Vehicle Make: <input type="text" name="inv_make" id="invMake" required value ="<%= locals.inv_make %>" pattern="/^[A-Za-z\s]+$/"></p></div>
     <div>Name must not speical characters.<p>Vehicle Model: <input type="text" name="inv_model" id="invModel" required value ="<%= locals.inv_model %>" pattern="/^[A-Za-z\s]+$/"></p></div>
     <div>Year can only have numbers.<p>Vehicle Year: <input type="text" name="inv_year" id="invYear" required value ="<%= locals.inv_year %>" pattern="^[a-zA-Z]+$"></p></div>
@@ -25,8 +25,9 @@
     <div>Price must have only numbers.<p>Vehicle Price: <input type="text" name="inv_price" id="invPrice" required value ="<%= locals.inv_price %>" pattern="\d+(\.\d{9})?"></p></div>
     <div>Name must not have spaces or any speical characters.<p>Vehicle Miles: <input type="text" name="inv_miles" id="invMiles" required value ="<%= locals.inv_miles %>" pattern="/^[A-Za-z\s]+$/"></p></div>
     <div>Name must not have special characters.<p>Vehicle Color: <input type="text" name="inv_color" id="invColor" required value ="<%= locals.inv_color %>" pattern="/^[A-Za-z\s]+$/"></p></div>
-    <input type="submit" name="Edit Classification" value="Update Vehicle">
+    <input type="button" name="Edit Classification" value="Update Vehicle">
     <input type="hidden" name="inv_id"
     <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
     <% } %>>
 </form>
+<script src="../../js/inv-update.js"></script>
