@@ -9,7 +9,7 @@ router.get("/type/:classificationId", util.handleErrors(invController.buildByCla
 router.get("/detail/:classificationId", util.handleErrors(invController.buildByInv_id));
 router.get("/", util.handleErrors(invController.buildInventoryManager))
 router.get("/add-classification", util.handleErrors(invController.buildClassificationName))
-// router.get("/error", util.handleErrors(invController.errorType500));
+router.get("/error", util.handleErrors(invController.errorType500));
 router.post(
     "/", 
     regValidate.classnameRules(), 
