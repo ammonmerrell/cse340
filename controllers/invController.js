@@ -73,7 +73,7 @@ invCont.errorType500 = async function (req, res, next) {
   let classification = await utilities.buildClassificationList()
   let links = await utilities.buildInvManager()
   req.flash("alert", "a 500 error")
-  res.status(500).render("inventory/management", {
+  res.status(500).render("inventory/error", {
     title: "500 Error",
     nav,
     classification,
