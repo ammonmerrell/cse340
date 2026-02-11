@@ -33,16 +33,17 @@ async function getInfoByClassificationId(inv_id) {
       WHERE i.inv_id = $1`,
       [inv_id]
     )
-    return data.rows
+    return data.rows[0]
   } catch (error) {
-    console.error("getclassificationsbyid error " + error)
+    console.error("model error " + error)
   }
 }
 
-async function addInventoryItem(inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color){
+async function addInventoryItem(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id){
+  console.log("model var: "+inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
   try {
-    const sql = "INSERT INTO public.inventory (inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color) VALUES ($1, $2, $3, $4, '/images/vehicles/no-image.png', '/images/vehicles/no-image-tn.jpg', $5, $6, $7) RETURNING *"
-    return await pool.query(sql, [inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color])
+    const sql = "INSERT INTO public.inventory (inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, classification_id) VALUES ($1, $2, $3, $4, '/images/vehicles/no-image.png', '/images/vehicles/no-image-tn.jpg', $5, $6, $7, $8) RETURNING *"
+    return await pool.query(sql, [inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id])
   } catch (error) {
     return error.message
   }
