@@ -58,9 +58,11 @@ invCont.buildClassificationName = async function (req, res, next) {
 
 invCont.buildinventoryName = async function (req, res, next) {
   let nav = await utilities.getNav()
+    let classification = await utilities.buildClassificationList()
   res.render("inventory/add-inventory.ejs", {
     title: "Classification Form",
     nav,
+    classification,
     errors: null,
   })
 }
@@ -209,6 +211,7 @@ invCont.addInventoryName = async function (req, res, next) {
     res.status(501).render("inventory/add-inventory", {
       title: "Classification Form",
       nav,
+      classification,
       errors: null,
     })
   }
