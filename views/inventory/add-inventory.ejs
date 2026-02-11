@@ -16,6 +16,7 @@
 
 <!-- I had to use google to figure out the patterns  -->
 <form id="addInventory" action="/inv/add-inventory" method="post">
+    <div>Classification:</div> <%- classification %>
     <div>Name can not have speical characters.<p>Vehicle Make: <input type="text" name="inv_make" id="invMake" required value ="<%= locals.inv_make %>" pattern="/^[A-Za-z\s]+$/"></p></div>
     <div>Name must not speical characters.<p>Vehicle Model: <input type="text" name="inv_model" id="invModel" required value ="<%= locals.inv_model %>" pattern="/^[A-Za-z\s]+$/"></p></div>
     <div>Year can only have numbers.<p>Vehicle Year: <input type="text" name="inv_year" id="invYear" required value ="<%= locals.inv_year %>" pattern="^[a-zA-Z]+$"></p></div>
