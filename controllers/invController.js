@@ -188,10 +188,10 @@ invCont.addClasificationName = async function (req, res, next) {
 invCont.addInventoryName = async function (req, res, next) {
   let links = await utilities.buildInvManager()
   const classification = await utilities.buildClassificationList()
-  const { inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color} = req.body
+  const { inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color, classification_id} = req.body
 
   const regResult = await invModel.addInventoryItem(
-    inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color
+    inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color, classification_id
   )
   let nav = await utilities.getNav()
 
