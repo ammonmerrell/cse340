@@ -33,7 +33,7 @@ async function getInfoByClassificationId(inv_id) {
       WHERE i.inv_id = $1`,
       [inv_id]
     )
-    return data.rows[0]
+    return data.rows
   } catch (error) {
     console.error("model error " + error)
   }
