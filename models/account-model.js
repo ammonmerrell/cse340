@@ -23,6 +23,17 @@ async function checkExistingEmail(account_email){
   }
 }
 
+// this function is not used currently
+async function checkExistingPassword(account_password){
+  try{
+    const sql = "SELECT * FROM account WHERE account_password = $1"
+    const password = await pool.query(sql, [account_password])
+    return password.rowCount
+  } catch (error) {
+    return error.message
+  }
+}
+
 /* *****
 * Return account data using email address
 * ***** */
@@ -36,4 +47,4 @@ async function getAccountByEmail (account_email) {
     return new Error("No matching email found")
   }
 }
-module.exports ={ registerAccount, checkExistingEmail, getAccountByEmail };
+module.exports ={ registerAccount, checkExistingEmail, getAccountByEmail, checkExistingPassword };
