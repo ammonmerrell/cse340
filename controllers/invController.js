@@ -186,16 +186,36 @@ invCont.addClasificationName = async function (req, res, next) {
 *  Process inventory Name
 * *************************************** */
 invCont.addInventoryName = async function (req, res, next) {
+  let nav = await utilities.getNav()
   let links = await utilities.buildInvManager()
   const classification = await utilities.buildClassificationList()
-  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body
+  const { 
+    inv_make, 
+    inv_model,  
+    inv_description, 
+    inv_image, 
+    inv_thumbnail, 
+    inv_price, 
+    inv_year,
+    inv_miles, 
+    inv_color, 
+    classification_id,
+  } = req.body
 
-  const regResult = await invModel.addInventoryItem(
-    inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id
+  const insResult = await invModel.addInventoryItem(
+    inv_make, 
+    inv_model,  
+    inv_description, 
+    inv_image, 
+    inv_thumbnail, 
+    inv_price, 
+    inv_year,
+    inv_miles, 
+    inv_color, 
+    classification_id
   )
-  let nav = await utilities.getNav()
 
-  if (regResult) {
+  if (insResult) {
     req.flash(
       "notice",
       `New item ${inv_make, inv_model} added sucsessfully.`
@@ -207,8 +227,8 @@ invCont.addInventoryName = async function (req, res, next) {
       classification,
     })
   } else {
-    req.flash("notice", "Sorry, failed to add classification.")
-    res.status(501).render("inventory/add-inventory", {
+    req.flash("message warning", "Sorry, failed to add vehicle.")
+    res.status(201).render("inventory/add-inventory", {
       title: "Classification Form",
       nav,
       classification,
