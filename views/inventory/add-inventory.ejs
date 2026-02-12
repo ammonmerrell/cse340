@@ -21,6 +21,8 @@
     <div>Name must not speical characters.<p>Vehicle Model: <input type="text" name="inv_model" id="invModel" required value ="<%= locals.inv_model %>" pattern="/^[A-Za-z\s]+$/"></p></div>
     <div>Year can only have numbers.<p>Vehicle Year: <input type="text" name="inv_year" id="invYear" required value ="<%= locals.inv_year %>" pattern="^[a-zA-Z]+$"></p></div>
     <p>Vehicle Description: <input type="text" name="inv_description" id="invDescription" required value ="<%= locals.inv_description %>"></p>
+    <div>Image Path<p>Vehicle Image: <input type="text" name="inv_image" id="invImage" required <% if( locals.inv_model) { %> value ="<%= locals.inv_model %>"<%} else{ %> value="/images/vehicles/no-image.png" <% } %> placeholder="/images/vehicles/no-image.png"></p></div>
+    <div>Image Path<p>Vehicle Thumbnail: <input type="text" name="inv_thumbnail" id="invThumbnail" required <% if(locals.inv_model) { %> value ="<%= locals.inv_model %>"<%} else{ %> value="/images/vehicles/no-image-tn.jpg" <% } %> placeholder="/images/vehicles/no-image-tn.jpg"></div>
     <div>Price must have only numbers.<p>Vehicle Price: <input type="text" name="inv_price" id="invPrice" required value ="<%= locals.inv_price %>" pattern="\d+(\.\d{9})?"></p></div>
     <div>Name must not have spaces or any speical characters.<p>Vehicle Miles: <input type="text" name="inv_miles" id="invMiles" required value ="<%= locals.inv_miles %>" pattern="/^[A-Za-z\s]+$/"></p></div>
     <div>Name must not have special characters.<p>Vehicle Color: <input type="text" name="inv_color" id="invColor" required value ="<%= locals.inv_color %>" pattern="/^[A-Za-z\s]+$/"></p></div>
