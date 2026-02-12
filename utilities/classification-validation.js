@@ -118,7 +118,7 @@ validate.checkRegData = async (req, res, next) => {
         let links = await util.buildInvManager()
         res.render("inventory/add-classification", {
             errors,
-            title: "Inventory Managementa",
+            title: "Classification Form",
             nav,
             // classification_name,
             links,
