@@ -6,13 +6,7 @@
 
 <%- messages() %>
 
-<% if (errors){ %>
-    <ul class = "notice">
-        <% errors.array().foreach(error => { %>
-            <li><%= error.msg %></li>
-    <%    }) %>
-    </ul>
-<% } %>
+
 
 <!-- I stumbled on the a correct pattern to use by checking for a string with upper and lower case letters only(which means no spaces or special characters) by searching the internet for lowercase-checking pattern. -->
 <form id="addClasification" action="/inv/" method="post">
