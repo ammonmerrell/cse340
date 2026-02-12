@@ -116,6 +116,7 @@ async function updateInventoryItem(
 return data.rows[0]
   } catch (error) {
     console.error("model error: "+ error)
+    new Error("Update Model Error")
   }
 }
 
