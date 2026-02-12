@@ -8,7 +8,7 @@
 
 <% if (errors){ %>
     <ul class = "notice">
-        <% errors.array().foreach (error => { %>
+        <% errors.array().foreach(error => { %>
             <li><%= error.msg %></li>
     <%    }) %>
     </ul>
@@ -16,6 +16,6 @@
 
 <!-- I stumbled on the a correct pattern to use by checking for a string with upper and lower case letters only(which means no spaces or special characters) by searching the internet for lowercase-checking pattern. -->
 <form id="addClasification" action="/inv/" method="post">
-    <div>Name must not have spaces or any speical characters.<p>New Classification: <input type="text" name="classification_name" id="classificationName" required value ="<%= locals.classification_name %>" pattern="^[a-zA-Z]+$"></p></div>
+    <div>Name must not have spaces or any speical characters.<p>New Classification: <input type="text" name="classification_name" id="classificationName" required value ="<%= locals.classification_name %>" pattern="^[a-zA-Z]*"></p></div>
     <input type="submit" name="Add Classification">
 </form>
