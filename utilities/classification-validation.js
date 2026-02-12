@@ -23,11 +23,72 @@ validate.classnameRules = () => {
 validate.inventoryRules = () => {
     return [
         //name has no spaces
+        body("classification_id")
+          .trim()
+          .isInt({
+            no_symbols: true,
+          })
+          .withMessage("The vehicle's classification is required."),
+
         body("inv_make")
           .trim()
           .isLength({ min: 1 })
           .isAlpha()
           .withMessage("Please provide a classification name."),
+
+        body("inv_model")
+          .trim()
+          .escape()
+          .isLength({ min: 3, })
+          .withMessage("A vehicle model is required."),
+
+        body("inv_description")
+          .trim()
+          .escape()
+          .isLength({ min: 3, })
+          .withMessage("A vehicle description is required."),
+
+        body("inv_image")
+          .trim()
+          .isLength({
+            min: 6,
+          })
+          .matches(/\.(jpg|jpeg|png|webp)$/)
+          .withMessage("A vehicle image path is required and must be an image"),
+
+        body("inv_thumbnail")
+          .trim()
+          .isLength({ min: 6, })
+          .matches(/\.(jpg|jpeg|png|webp)$/)
+          .withMessage("A vehicle image path is required and must be an image."),
+        
+        body("inv_price")
+          .trim()
+          .isDecimal()
+          .withMessage("A vehicle price is required."),
+
+        body("inv_year")
+          .trim()
+          .isInt({
+            min: 1900,
+            max: 2099,
+          })
+          .withMessage("A vehicle year is required."),
+
+        body("inv_miles")
+          .trim()
+          .isInt({
+              no_symbols: true,
+          })
+          .withMessage("The vehicle's miles are required."),
+
+        body("inv_color")
+          .trim()
+          .escape()
+          .isLength({
+            min: 3,
+          })
+          .withMessage("The vehicle's color is required.")
     ]
 }
 /* *****
