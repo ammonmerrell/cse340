@@ -34,7 +34,7 @@ router.post(
     util.handleErrors(invController.updateInventory))
 
 router.get("/delete/:inv_id", util.handleErrors(invController.CheckDeleteItem))
-router.post("/delete/:inv_id",
+router.post("/delete/",
     
 )
 
