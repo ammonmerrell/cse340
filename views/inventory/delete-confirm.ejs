@@ -17,18 +17,14 @@
 <% } %>
 
 <!-- I had to use the teacher example(cse340) to figure out the patterns  -->
-<form id="updateForm" action="/inv/edit-inventory" method="post">
+<form id="deleteForm" action="/inv/delete/" method="post">
+    <div>Confirm Delection - this is permanent.</div>
     <div>Classification:</div> <%- classification %>
-    <div>Name can not have speical characters.<p>Vehicle Make: <input type="text" name="inv_make" id="invMake" required value ="<%= locals.inv_make %>" pattern="/^[A-Za-z\s]+$/"></p></div>
-    <div>Name must not speical characters.<p>Vehicle Model: <input type="text" name="inv_model" id="invModel" required value ="<%= locals.inv_model %>" pattern="/^[A-Za-z\s]+$/"></p></div>
-    <div>Year can only have numbers.<p>Vehicle Year: <input type="text" name="inv_year" id="invYear" required value ="<%= locals.inv_year %>" pattern="^[a-zA-Z]+$"></p></div>
-    <p>Vehicle Description: <input type="text" name="inv_description" id="invDescription" required value ="<%= locals.inv_description %>"></p>
-        <div>Image Path<p>Vehicle Image: <input type="text" name="inv_image" id="invImage" required <% if( locals.inv_image) { %> value ="<%= locals.inv_image %>"<%} else{ %> value="/images/vehicles/no-image.png" <% } %> placeholder="/images/vehicles/no-image.png"></p></div>
-    <div>Image Path<p>Vehicle Thumbnail: <input type="text" name="inv_thumbnail" id="invThumbnail" required <% if(locals.inv_model) { %> value ="<%= locals.inv_thumbnail %>"<%} else{ %> value="/images/vehicles/no-image-tn.jpg" <% } %> placeholder="/images/vehicles/no-image-tn.jpg"></div>
-    <div>Price must have only numbers.<p>Vehicle Price: <input type="text" name="inv_price" id="invPrice" required value ="<%= locals.inv_price %>" pattern="\d+(\.\d{9})?"></p></div>
-    <div>Name must not have spaces or any speical characters.<p>Vehicle Miles: <input type="text" name="inv_miles" id="invMiles" required value ="<%= locals.inv_miles %>" pattern="/^[A-Za-z\s]+$/"></p></div>
-    <div>Name must not have special characters.<p>Vehicle Color: <input type="text" name="inv_color" id="invColor" required value ="<%= locals.inv_color %>" pattern="/^[A-Za-z\s]+$/"></p></div>
-    <button type="submit" name="Edit Classification" value="Update Vehicle">Update Vehicle
+    <div><p>Vehicle Make: <input type="text" name="inv_make" id="invMake" required readonly ="<%= locals.inv_make %>" pattern="/^[A-Za-z\s]+$/"></p></div>
+    <div><p>Vehicle Model: <input type="text" name="inv_model" id="invModel" required readonly ="<%= locals.inv_model %>" pattern="/^[A-Za-z\s]+$/"></p></div>
+    <div><p>Vehicle Year: <input type="text" name="inv_year" id="invYear" required readonly ="<%= locals.inv_year %>" pattern="^[a-zA-Z]+$"></p></div>
+    <div><p>Vehicle Price: <input type="text" name="inv_price" id="invPrice" required readonly ="<%= locals.inv_price %>" pattern="\d+(\.\d{9})?"></p></div>
+    <button type="submit" name="Delete Classification" value="Delete Vehicle">Delete  Vehicle</button>
     <input type="hidden" name="inv_id"
     <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
     <% } %>>
