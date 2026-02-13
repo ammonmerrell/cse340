@@ -38,7 +38,13 @@ invCont.buildByInv_id = async function (req, res, next) {
 
 invCont.buildInventoryManager = async function (req, res, next) {
   let nav = await utilities.getNav()
-  let header = await utilities.getHeader()
+  let header = ""
+  // if(res.locals.loggedin){
+  //       header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+  //   } else{
+  //       header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+  //   }
+  
   const classification = await utilities.buildClassificationList()
   let links = await utilities.buildInvManager()
   res.render("inventory/management.ejs", {
