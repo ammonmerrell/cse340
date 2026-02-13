@@ -139,7 +139,7 @@ validate.checkInvData = async (req, res, next) => {
         // let links = await util.buildInvManager()
         res.render("inventory/add-classification", {
             errors,
-            title: "Inventory Management",
+            title: "Classification Form(landing page from add inventory)",
             nav,
             inv_model,
             inv_make,
