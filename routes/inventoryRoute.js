@@ -35,7 +35,7 @@ router.post(
 
 router.get("/delete/:inv_id", util.handleErrors(invController.CheckDeleteItem))
 router.post("/delete/",
-    
+    util.handleErrors(invController.accDeleteItem)    
 )
 
 module.exports = router;
