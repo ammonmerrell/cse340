@@ -16,7 +16,7 @@
     </ul>
 <% } %>
 
-<!-- I had to use google to figure out the patterns  -->
+<!-- I had to use the teacher example(cse340) to figure out the patterns  -->
 <form id="updateForm" action="/inv/edit-inventory" method="post">
     <div>Classification:</div> <%- classification %>
     <div>Name can not have speical characters.<p>Vehicle Make: <input type="text" name="inv_make" id="invMake" required value ="<%= locals.inv_make %>" pattern="/^[A-Za-z\s]+$/"></p></div>
