@@ -311,4 +311,36 @@ invCont.editInventory = async function (req, res, next) {
     classification_id: itemData[0].classification_id
   })
 }
+
+
+/* ***************************
+ *  Build confirm-delete inventory view
+ * ************************** */
+invCont.CheckDeleteItem = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inv_id)
+  let nav = await utilities.getNav()
+  const itemData = await invModel.getInfoByClassificationId(inv_id)
+  const classification = await utilities.buildClassificationList(itemData.classification_id)
+  const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
+  res.render("./inventory/delete-confirm.ejs", {
+    title: "delete " + itemName,
+    nav,
+    classification,
+    errors: null,
+    inv_id: itemData[0].inv_id,
+    inv_make: itemData[0].inv_make,
+    inv_model: itemData[0].inv_model,
+    inv_year: itemData[0].inv_year,
+    inv_description: itemData[0].inv_description,
+    inv_image: itemData[0].inv_image,
+    inv_thumbnail: itemData[0].inv_thumbnail,
+    inv_price: itemData[0].inv_price,
+    inv_miles: itemData[0].inv_miles,
+    inv_color: itemData[0].inv_color,
+    classification_id: itemData[0].classification_id
+  })
+}
+
+
+
   module.exports = invCont
