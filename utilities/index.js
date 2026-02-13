@@ -27,6 +27,22 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* *****
+* Get header 
+* *****/
+Util.getHeader = async function (req, res, next) {
+    // let header = "<span class=\"siteName\">"
+    // header += "<a href=\"/\" title=\"Return to home page\">CSE Motors</a> </span><div id=\"tools\"></div>"
+    let header ="a"
+    // if(res.locals.loggedin){
+    //     header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    // } else{
+    //     header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    // }
+    return header
+}
+
+
+/* *****
 * Build the classification view HTML
 * ***** */
 Util.buildClassificationGrid = async function(data){
