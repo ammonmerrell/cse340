@@ -341,6 +341,69 @@ invCont.CheckDeleteItem = async function (req, res, next) {
   })
 }
 
+/* ****************************************
+*  Delete inventory Item
+* *************************************** */
+invCont.accDeleteItem = async function (req, res, next) {
+  let links = await utilities.buildInvManager()
+  const classification = await utilities.buildClassificationList()
+  const { 
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id
+  } = req.body
 
+  const deleteResult = await invModel.deleteInventoryItem(
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id
+  )
+  let nav = await utilities.getNav()
+
+  if (deleteResult) {
+    const itemName = deleteResult.inv_make +" "+ deleteResult.inv_model;
+    req.flash(
+      "notice",
+      `The item ${itemName} deleted sucsessfully.`
+    )
+    res.redirect("/inv/")
+  } else {
+    const itemName = `${inv_make} ${inv_model}`
+    req.flash("notice", "Sorry, failed to delete inventory item.")
+    res.status(501).render("inventory/edit-inventory.ejs", {
+      title: "Edit " + itemName,
+      nav,
+      classification: classification,
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id
+    })
+  }
+}
 
   module.exports = invCont
