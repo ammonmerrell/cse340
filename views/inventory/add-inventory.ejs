@@ -22,8 +22,9 @@
     <div>Year can only have numbers.<p>Vehicle Year: <label for="invYear"></label>
       <input type="text" name="inv_year" id="invYear" size="10" placeholder="4-digit year" required minlength="4" maxlength="4" pattern="^(19|20)\d{2}$" <% if(locals.inv_year) { %> value="<%= locals.inv_year %>" <% } %>>
 </p></div>
-    <p>Vehicle Description: <textarea name="inv_description" id="invDescription" required><% if(locals.inv_description){ %> { %>
-        <%= locals.inv_description %><% } %></textarea>
+    <p>Vehicle Description: <textarea id="invDescription" name="inv_description" required><% if(locals.inv_description) { %><%= locals.inv_description %><% } %></textarea>
+
+
     <div>Image Path<p>Vehicle Image: <input type="text" name="inv_image" id="invImage" size="30" required <% if( locals.inv_image) { %> value ="<%= locals.inv_image %>"<%} else{ %> value="/images/vehicles/no-image.png" <% } %> placeholder="/images/vehicles/no-image.png"></p></div>
     <div>Image Path<p>Vehicle Thumbnail: <input type="text" name="inv_thumbnail" id="invThumbnail" required <% if(locals.inv_model) { %> value ="<%= locals.inv_model %>"<%} else{ %> value="/images/vehicles/no-image-tn.jpg" <% } %> placeholder="/images/vehicles/no-image-tn.jpg"></div>
     <div>Price must have only numbers.<p>Vehicle Price:  <label for="invPrice">Price</label>
