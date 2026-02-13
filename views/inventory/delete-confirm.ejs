@@ -19,11 +19,11 @@
 <!-- I had to use the teacher example(cse340) to figure out the patterns  -->
 <form id="deleteForm" action="/inv/delete/" method="post">
     <div>Confirm Delection - this is permanent.</div>
-    <div>Classification:</div> <%- classification %>
-    <div><p>Vehicle Make: <input type="text" name="inv_make" id="invMake" required readonly ="<%= locals.inv_make %>" pattern="/^[A-Za-z\s]+$/"></p></div>
-    <div><p>Vehicle Model: <input type="text" name="inv_model" id="invModel" required readonly ="<%= locals.inv_model %>" pattern="/^[A-Za-z\s]+$/"></p></div>
-    <div><p>Vehicle Year: <input type="text" name="inv_year" id="invYear" required readonly ="<%= locals.inv_year %>" pattern="^[a-zA-Z]+$"></p></div>
-    <div><p>Vehicle Price: <input type="text" name="inv_price" id="invPrice" required readonly ="<%= locals.inv_price %>" pattern="\d+(\.\d{9})?"></p></div>
+    
+    <div><p>Vehicle Make: <input type="text" name="inv_make" id="invMake" required readonly value="<%= locals.inv_make %>" pattern="/^[A-Za-z\s]+$/"></p></div>
+    <div><p>Vehicle Model: <input type="text" name="inv_model" id="invModel" required readonly value="<%= locals.inv_model %>" pattern="/^[A-Za-z\s]+$/"></p></div>
+    <div><p>Vehicle Year: <input type="text" name="inv_year" id="invYear" required readonly value="<%= locals.inv_year %>" pattern="^[a-zA-Z]+$"></p></div>
+    <div><p>Vehicle Price: <input type="text" name="inv_price" id="invPrice" required readonly value="<%= locals.inv_price %>" pattern="\d+(\.\d{9})?"></p></div>
     <button type="submit" name="Delete Classification" value="Delete Vehicle">Delete  Vehicle</button>
     <input type="hidden" name="inv_id"
     <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"

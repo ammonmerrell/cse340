@@ -377,7 +377,7 @@ invCont.accDeleteItem = async function (req, res, next) {
   let nav = await utilities.getNav()
 
   if (deleteResult) {
-    const itemName = deleteResult.inv_make +" "+ deleteResult.inv_model;
+    const itemName = inv_make +" "+ inv_model;
     req.flash(
       "notice",
       `The item ${itemName} deleted sucsessfully.`
