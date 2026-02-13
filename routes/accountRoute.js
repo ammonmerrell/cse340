@@ -21,7 +21,7 @@ router.post(
   "/login",
   regValidate.loginRules(),
   regValidate.checkLoginData,
-  util.handleErrors(accController.buildAccReg)
+  util.handleErrors(accController.accountLogin)
 )
 
 

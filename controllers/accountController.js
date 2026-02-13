@@ -91,7 +91,7 @@ async function buildAccReg(req, res) {
 async function accountLogin(req, res) {
     let nav = await util.getNav()
     const { account_email, account_password } = req.body
-    const accountData = await accountModel.getAccountByEmail(account_email)
+    const accountData = await model.getAccountByEmail(account_email)
     if (!accountData) {
         req.flash("notice", "Please check your credentials and try again.")
         res.status(400).render("account/login", {
@@ -106,6 +106,7 @@ async function accountLogin(req, res) {
         if (await bcrypt.compare(account_password, accountData.account_password)) {
             delete accountData.account_password
             const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000})
+            console.log("acces token: "+accessToken)
             if(process.env.NODE_ENV === 'development') {
                 res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000})
             } else {
