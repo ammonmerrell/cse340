@@ -38,10 +38,12 @@ invCont.buildByInv_id = async function (req, res, next) {
 
 invCont.buildInventoryManager = async function (req, res, next) {
   let nav = await utilities.getNav()
+  let header = await utilities.getHeader()
   const classification = await utilities.buildClassificationList()
   let links = await utilities.buildInvManager()
   res.render("inventory/management.ejs", {
     title: "Inventory Manager",
+    header,
     nav,
     links,
     classification,
