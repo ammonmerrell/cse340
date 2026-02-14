@@ -2,6 +2,7 @@ const util = require("../utilities/index")
 const model = require("../models/account-model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const { accDeleteItem } = require("./invController")
 require("dotenv").config()
 
 /* *****
@@ -28,6 +29,7 @@ async function  buildLogin(req,res, next) {
 * ***** */
 async function registerUser(req, res, next) {
     let nav = await util.getNav()
+    let accData = accountData.account_firstname
     let header = ""
     if(res.locals.loggedin){
         header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
@@ -39,6 +41,7 @@ async function registerUser(req, res, next) {
         header,
         nav,
         errors: null,
+
     })
 }
 
@@ -48,6 +51,7 @@ Process Registration
 async function registerAccount(req, res){
     let nav = await util.getNav()
     let header = ""
+    let accData = accountData.account_firstname
     if(res.locals.loggedin){
         header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
     } else{
@@ -67,6 +71,7 @@ async function registerAccount(req, res){
             header,
             nav,
             errors: null,
+
         })
     }
 
@@ -90,17 +95,20 @@ async function registerAccount(req, res){
         })
     } else {
         req.flash("message warning", "Sorry, the registration failed.")
+        let accData = accountData.account_firstname
         res.status(501).render("account/register", {
             title: "Registration",
             header,
             nav,
             errors: null,
+
         })
     }
 }
 
 async function buildAccReg(req, res) {
     let nav = await util.getNav();
+    let accData = res.locals.accountData.account_firstname
     let header = ""
     if(res.locals.loggedin){
         header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
@@ -108,10 +116,12 @@ async function buildAccReg(req, res) {
         header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
     }
     res.render("account/account-register", {
+        
         title: "You're logged in.",
         header,
         nav,
         errors: null,
+        accData,
 
 })
 }
@@ -128,6 +138,7 @@ async function accountLogin(req, res) {
     }
     const { account_email, account_password } = req.body
     const accountData = await model.getAccountByEmail(account_email)
+    let accData = accountData.account_firstname
     if (!accountData) {
         req.flash("notice", "Please check your credentials and try again.")
         res.status(400).render("account/login", {
@@ -136,6 +147,7 @@ async function accountLogin(req, res) {
             nav,
             errors: null,
             account_email,
+            accData,
         })
         return
     }
@@ -159,6 +171,7 @@ async function accountLogin(req, res) {
                 nav,
                 errors: null,
                 account_email,
+                account_firstname,
             })
         } 
     } catch (error) {
@@ -172,6 +185,7 @@ async function accountLogin(req, res) {
      * ***** */
     async function logoutAcc(req, res) {
     let nav = await util.getNav();
+    let accData = ""
     let header = ""
     if(res.locals.loggedin){
         header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
@@ -184,6 +198,7 @@ async function accountLogin(req, res) {
         header,
         nav,
         errors: null,
+        accData,
 
 })
 }
