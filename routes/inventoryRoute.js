@@ -8,7 +8,7 @@ const regValidate = require("../utilities/classification-validation")
 router.get("/type/:classificationId", util.handleErrors(invController.buildByClassificationId));
 router.get("/detail/:classificationId", util.handleErrors(invController.buildByInv_id));
 router.get("/", util.checkBasicLogin, util.handleErrors(invController.buildInventoryManager))
-router.get("/add-classification", util.handleErrors(invController.buildClassificationName))
+router.get("/add-classification", util.checkBasicLogin, util.handleErrors(invController.buildClassificationName))
 router.get("/error", util.handleErrors(invController.errorType500));
 router.post(
     "/", 
@@ -17,7 +17,7 @@ router.post(
     util.handleErrors(invController.addClasificationName)
 )
 
-router.get("/add-inventory", util.handleErrors(invController.buildinventoryName))
+router.get("/add-inventory", util.checkBasicLogin, util.handleErrors(invController.buildinventoryName))
 router.post(
     "/add-inventory", 
     regValidate.inventoryRules(), 
@@ -25,7 +25,7 @@ router.post(
     util.handleErrors(invController.addInventoryName)
 )
 router.get("/getInventory/:classification_id", util.handleErrors(invController.getInventoryJSON))
-router.get("/edit/:inv_id", util.handleErrors(invController.editInventory))
+router.get("/edit/:inv_id", util.checkBasicLogin, util.handleErrors(invController.editInventory))
 
 router.post(
     "/edit-inventory/", 
@@ -33,7 +33,7 @@ router.post(
     regValidate.checkEditData,
     util.handleErrors(invController.updateInventory))
 
-router.get("/delete/:inv_id", util.handleErrors(invController.CheckDeleteItem))
+router.get("/delete/:inv_id", util.checkBasicLogin, util.handleErrors(invController.CheckDeleteItem))
 router.post("/delete/",
     util.handleErrors(invController.accDeleteItem)    
 )
