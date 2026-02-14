@@ -167,4 +167,25 @@ async function accountLogin(req, res) {
     
     }
 
-module.exports = {buildLogin, registerUser, registerAccount, accountLogin, buildAccReg}
+    /*****
+     * Logout of account
+     * ***** */
+    async function logoutAcc(req, res) {
+    let nav = await util.getNav();
+    let header = ""
+    if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
+    res.clearCookie('jwt')
+    res.render("account/account-register", {
+        title: "You're logged out.",
+        header,
+        nav,
+        errors: null,
+
+})
+}
+
+module.exports = {buildLogin, registerUser, registerAccount, accountLogin, buildAccReg, logoutAcc}
