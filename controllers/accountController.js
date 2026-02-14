@@ -9,8 +9,15 @@ require("dotenv").config()
 * ***** */
 async function  buildLogin(req,res, next) {
     let nav = await util.getNav()
+    let header = ""
+    if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
     res.render("account/login", {
         title: "login",
+        header,
         nav,
         errors: null,
     })    
@@ -21,8 +28,15 @@ async function  buildLogin(req,res, next) {
 * ***** */
 async function registerUser(req, res, next) {
     let nav = await util.getNav()
+    let header = ""
+    if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
     res.render("account/register", {
         title: "Register",
+        header,
         nav,
         errors: null,
     })
@@ -33,6 +47,12 @@ Process Registration
 * ***** */
 async function registerAccount(req, res){
     let nav = await util.getNav()
+    let header = ""
+    if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
     const { account_firstname, account_lastname, account_email, account_password} = req.body
 
     //Hash
@@ -44,6 +64,7 @@ async function registerAccount(req, res){
         req.flash("message failure", 'Sorry, there was an error processing the registration.')
         res.status(500).render("account/register", {
             title: "Registration",
+            header,
             nav,
             errors: null,
         })
@@ -63,6 +84,7 @@ async function registerAccount(req, res){
         )
         res.status(201).render("account/login", {
             title: "login",
+            header,
             nav,
             errors: null,
         })
@@ -70,6 +92,7 @@ async function registerAccount(req, res){
         req.flash("message warning", "Sorry, the registration failed.")
         res.status(501).render("account/register", {
             title: "Registration",
+            header,
             nav,
             errors: null,
         })
@@ -80,6 +103,7 @@ async function buildAccReg(req, res) {
     let nav = await util.getNav();
     res.render("account/account-register", {
         title: "You're logged in.",
+        header,
         nav,
         errors: null,
 
@@ -96,6 +120,7 @@ async function accountLogin(req, res) {
         req.flash("notice", "Please check your credentials and try again.")
         res.status(400).render("account/login", {
             title: "Login",
+            header,
             nav,
             errors: null,
             account_email,
@@ -118,6 +143,7 @@ async function accountLogin(req, res) {
             req.flash("message notice", "Please check your credencials and try again.")
             res.status(400).render("account/login", {
                 title: "Login",
+                header,
                 nav,
                 errors: null,
                 account_email,

@@ -11,10 +11,17 @@ invCont.buildByClassificationId = async function (req, res, next) {
   const data = await invModel.getInventoryByClassificationId(classification_id)
   const grid = await utilities.buildClassificationGrid(data)
   let nav = await utilities.getNav()
+  let header = ""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
   const className = data[0].classification_name
   res.render("./inventory/classification", {
     title: className + " vehicles",
     nav,
+    header,
     grid,
   })
 }
@@ -25,6 +32,12 @@ invCont.buildByInv_id = async function (req, res, next) {
   const data = await invModel.getInfoByClassificationId(classification_id)
   const grid = await utilities.buildIdGrid(data)
   let nav = await utilities.getNav()
+  let header =""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
   const carYear = data[0].inv_year
   const carMake = data[0].inv_make
   const  carModel = data[0].inv_model
@@ -32,6 +45,7 @@ invCont.buildByInv_id = async function (req, res, next) {
   res.render("./inventory/details.ejs", {
     title: carYear + " " + carMake + "  " + carModel+ "  $" +carPrice,
     nav,
+    header,
     grid,
   })
 }
@@ -39,11 +53,11 @@ invCont.buildByInv_id = async function (req, res, next) {
 invCont.buildInventoryManager = async function (req, res, next) {
   let nav = await utilities.getNav()
   let header = ""
-  // if(res.locals.loggedin){
-  //       header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
-  //   } else{
-  //       header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
-  //   }
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
   
   const classification = await utilities.buildClassificationList()
   let links = await utilities.buildInvManager()
@@ -57,19 +71,33 @@ invCont.buildInventoryManager = async function (req, res, next) {
 }
 invCont.buildClassificationName = async function (req, res, next) {
   let nav = await utilities.getNav()
+  let header = ""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
   res.render("inventory/add-classification.ejs", {
     title: "Classification Form",
     nav,
+    header,
     errors: null,
   })
 }
 
 invCont.buildinventoryName = async function (req, res, next) {
   let nav = await utilities.getNav()
+  let header =""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
     let classification = await utilities.buildClassificationList()
   res.render("inventory/add-inventory.ejs", {
     title: "Classification Form",
     nav,
+    header,
     classification,
     errors: null,
   })
@@ -80,12 +108,19 @@ invCont.buildinventoryName = async function (req, res, next) {
 ****** */
 invCont.errorType500 = async function (req, res, next) {
     let nav = await utilities.getNav()
+    let header = ""
+    if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
   let classification = await utilities.buildClassificationList()
   let links = await utilities.buildInvManager()
   req.flash("alert", "a 500 error")
   res.status(500).render("inventory/error", {
     title: "500 Error",
     nav,
+    header,
     classification,
     links,
   })
@@ -98,6 +133,12 @@ invCont.errorType500 = async function (req, res, next) {
 invCont.updateInventory = async function (req, res, next) {
   let links = await utilities.buildInvManager()
   const classification = await utilities.buildClassificationList()
+  let header = ""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
   const { 
     inv_id,
     inv_make,
@@ -140,6 +181,7 @@ invCont.updateInventory = async function (req, res, next) {
     res.status(501).render("inventory/edit-inventory.ejs", {
       title: "Edit " + itemName,
       nav,
+      header,
       classification: classification,
       errors: null,
       inv_id,
@@ -167,6 +209,12 @@ invCont.addClasificationName = async function (req, res, next) {
     classification_name
   )
   let nav = await utilities.getNav()
+  let header = ""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
   const classification = await utilities.buildClassificationList()
 
   if (regResult) {
@@ -177,6 +225,7 @@ invCont.addClasificationName = async function (req, res, next) {
     res.status(201).render("inventory/management", {
       title: "Inventory Manager",
       nav,
+      header,
       links,
       classification,
     })
@@ -185,6 +234,7 @@ invCont.addClasificationName = async function (req, res, next) {
     res.status(501).render("inventory/add-classification", {
       title: "Classification Form",
       nav,
+      header,
       errors,
     })
   }
@@ -195,6 +245,12 @@ invCont.addClasificationName = async function (req, res, next) {
 * *************************************** */
 invCont.addInventoryName = async function (req, res, next) {
   let nav = await utilities.getNav()
+  let header = ""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
   let links = await utilities.buildInvManager()
   const classification = await utilities.buildClassificationList()
   const { 
@@ -231,6 +287,7 @@ invCont.addInventoryName = async function (req, res, next) {
     res.status(201).render("inventory/management", {
       title: "Inventory Manager",
       nav,
+      header,
       links,
       classification,
     })
@@ -239,6 +296,7 @@ invCont.addInventoryName = async function (req, res, next) {
     res.status(201).render("inventory/add-inventory", {
       title: "Classification Form",
       nav,
+      header,
       classification,
       errors: null,
     })
@@ -298,12 +356,19 @@ invCont.getInventoryJSON = async (req, res, next) => {
 invCont.editInventory = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id)
   let nav = await utilities.getNav()
+  let header = ""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
   const itemData = await invModel.getInfoByClassificationId(inv_id)
   const classification = await utilities.buildClassificationList(itemData.classification_id)
   const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
   res.render("./inventory/edit-inventory.ejs", {
     title: "Edit " + itemName,
     nav,
+    header,
     classification,
     errors: null,
     inv_id: itemData[0].inv_id,
@@ -327,12 +392,19 @@ invCont.editInventory = async function (req, res, next) {
 invCont.CheckDeleteItem = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id)
   let nav = await utilities.getNav()
+  let header = ""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
   const itemData = await invModel.getInfoByClassificationId(inv_id)
   const classification = await utilities.buildClassificationList(itemData.classification_id)
   const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
   res.render("./inventory/delete-confirm.ejs", {
     title: "delete " + itemName,
     nav,
+    header,
     classification,
     errors: null,
     inv_id: itemData[0].inv_id,
@@ -383,6 +455,12 @@ invCont.accDeleteItem = async function (req, res, next) {
     classification_id
   )
   let nav = await utilities.getNav()
+  let header = ""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
 
   if (deleteResult) {
     const itemName = inv_make +" "+ inv_model;
@@ -397,6 +475,7 @@ invCont.accDeleteItem = async function (req, res, next) {
     res.status(501).render("inventory/edit-inventory.ejs", {
       title: "Edit " + itemName,
       nav,
+      header,
       classification: classification,
       errors: null,
       inv_id,
