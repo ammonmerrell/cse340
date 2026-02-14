@@ -179,4 +179,20 @@ Util.checkLogin = (req, res, next) => {
         return res.redirect("/account/login")
     }
 }
+
+/*****
+ *  Check Not Basic account
+ ***** */
+Util.checkBasicLogin = (req, res, next) => {
+    if (res.locals.accountData.account_type == "Employee"|| res.locals.accountData.account_type == "Admin")
+        {
+            next()
+        } else{
+            res.clearCookie("jwt")
+            req.flash("notice", "Please sign in.")
+
+            return res.redirect("/account/login")
+        }
+}
+
 module.exports = Util
