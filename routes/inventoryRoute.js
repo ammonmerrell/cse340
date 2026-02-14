@@ -7,7 +7,7 @@ const regValidate = require("../utilities/classification-validation")
 // Route to build inventory by classification view
 router.get("/type/:classificationId", util.handleErrors(invController.buildByClassificationId));
 router.get("/detail/:classificationId", util.handleErrors(invController.buildByInv_id));
-router.get("/", util.handleErrors(invController.buildInventoryManager))
+router.get("/", util.checkBasicLogin, util.handleErrors(invController.buildInventoryManager))
 router.get("/add-classification", util.handleErrors(invController.buildClassificationName))
 router.get("/error", util.handleErrors(invController.errorType500));
 router.post(
