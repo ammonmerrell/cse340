@@ -115,7 +115,7 @@ li{
         linear-gradient(-45deg, transparent 75%, black 75%);
       background-size: 80px 80px;
       background-position: 0 0, 0 40px, 40px -40px, -40px 0; /* Must be half of the background-size*/
-    } */
+    /* } */ 
 
     #wrapper {
       max-width: 1200px;
