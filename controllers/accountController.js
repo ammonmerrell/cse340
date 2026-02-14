@@ -101,6 +101,12 @@ async function registerAccount(req, res){
 
 async function buildAccReg(req, res) {
     let nav = await util.getNav();
+    let header = ""
+    if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
     res.render("account/account-register", {
         title: "You're logged in.",
         header,
@@ -114,6 +120,12 @@ async function buildAccReg(req, res) {
 * ***** */
 async function accountLogin(req, res) {
     let nav = await util.getNav()
+    let header = ""
+    if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
     const { account_email, account_password } = req.body
     const accountData = await model.getAccountByEmail(account_email)
     if (!accountData) {
