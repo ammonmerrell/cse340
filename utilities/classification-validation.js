@@ -25,7 +25,7 @@ validate.delClassRules = () => {
     .trim()
     .isLength({ min: 1 })
     .isAlpha()
-    .withMessage("Please enter a classification name.")
+    .withMessage("Please enter a classification name."),
   ]
 }
 
@@ -153,7 +153,6 @@ validate.checkclassData = async (req, res, next) => {
         res.render("inventory/delete-classification", {
             errors,
             title: "Classification Form",
-            
             nav,
             // classification_name,
             links,
