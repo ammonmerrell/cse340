@@ -1,0 +1,23 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %> 
+
+<%- messages() %>
+
+
+
+<!-- I stumbled on the a correct pattern to use by checking for a string with upper and lower case letters only(which means no spaces or special characters) by searching the internet for lowercase-checking pattern. -->
+<form id="RemoveClasification" action="/inv/delete-classification" method="post">
+    <div>Type the name of the classification to delete.<p>Delete Classification: <input type="text" name="classification_name" id="classificationName" required value ="<%= locals.classification_name %>" pattern="^[a-zA-Z]*"></p></div>
+    <input type="submit" name="Add Classification">
+</form>
