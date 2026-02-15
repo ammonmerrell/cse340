@@ -9,6 +9,14 @@ router.get("/type/:classificationId", util.handleErrors(invController.buildByCla
 router.get("/detail/:classificationId", util.handleErrors(invController.buildByInv_id));
 router.get("/", util.checkBasicLogin, util.handleErrors(invController.buildInventoryManager))
 router.get("/add-classification", util.checkBasicLogin, util.handleErrors(invController.buildClassificationName))
+// week 5 route to get to delete classification
+router.get("/delete-classification", util.checkBasicLogin, util.handleErrors(invController.removeClassificationName))
+router.post(
+    "/delete-classification", 
+    regValidate.delClassRules,
+    regValidate.checkclassData,
+    util.handleErrors(invController.deleteClassificationName))
+// *****
 router.get("/error", util.handleErrors(invController.errorType500));
 router.post(
     "/", 
