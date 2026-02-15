@@ -263,7 +263,6 @@ invCont.addClasificationName = async function (req, res, next) {
  * Delete Classification name
  ******/
 invCont.deleteClassificationName = async function (req, res, next) {
-  let nav = await utilities.getNav()
   let header = ""
   if(res.locals.loggedin){
         header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
@@ -274,10 +273,11 @@ invCont.deleteClassificationName = async function (req, res, next) {
     const classification = await utilities.buildClassificationList()
     const {classification_name} = req.body
     const classData = await invModel.deleteClassificationName(classification_name)
+    let nav = await utilities.getNav()
     if (classData) {
     req.flash(
       "notice",
-      `The classification was removed sucsessfully.`
+      `The classification ${classification_name} was removed sucsessfully.`
     )
     res.status(201).render("inventory/management", {
       title: "Inventory Manager",
