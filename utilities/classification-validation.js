@@ -16,6 +16,18 @@ validate.classnameRules = () => {
           .withMessage("Please provide a classification name."),
     ]
 }
+/*****
+ * Delete classification delete mode.
+ *****/
+validate.delClassRules = () => {
+  return [
+    body("classification_name")
+    .trim()
+    .isLength({ min: 1 })
+    .isAlpha()
+    .withMessage("Please enter a classification name.")
+  ]
+}
 
 /* *****
 * inventory name data validation rules
@@ -127,6 +139,31 @@ validate.checkRegData = async (req, res, next) => {
     }
     next()
 }
+
+/* *****
+* Check delete data 
+***** */
+validate.checkclassData = async (req, res, next) => {
+    const { classification_name } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await util.getNav()         
+        let links = await util.buildInvManager()
+        res.render("inventory/delete-classification", {
+            errors,
+            title: "Classification Form",
+            
+            nav,
+            // classification_name,
+            links,
+        })
+        return
+    }
+    next()
+}
+
+
 /* *****
 * Inventory and show results
 * *****/
