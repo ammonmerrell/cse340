@@ -88,9 +88,10 @@ async function addClasificationName(classification_name){
  ***** */
 async function deleteClassificationName(classification_name){
   try {
-    const sql = "DELETE FROM public.classification WHERE (classification_name) VALUES ($1) RETURNING *"
+    const sql = "DELETE FROM public.classification WHERE classification_name =$1"
     return await pool.query(sql, [classification_name])
   } catch(error){
+    console.error("model error: " + error)
     return error.message
   }
 }
