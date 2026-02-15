@@ -85,6 +85,25 @@ invCont.buildClassificationName = async function (req, res, next) {
   })
 }
 
+/******new value */
+invCont.removeClassificationName = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  let header = ""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
+  res.render("inventory/delete-classification.ejs", {
+    title: "Delete classification Form",
+    nav,
+    header,
+    errors: null,
+  })
+}
+
+/***** */
+
 invCont.buildinventoryName = async function (req, res, next) {
   let nav = await utilities.getNav()
   let header =""
@@ -239,6 +258,52 @@ invCont.addClasificationName = async function (req, res, next) {
     })
   }
 }
+
+/******
+ * Delete Classification name
+ ******/
+invCont.deleteClassificationName = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  let header = ""
+  if(res.locals.loggedin){
+        header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
+    } else{
+        header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
+    }
+    let links = await utilities.buildInvManager()
+    const classification = await utilities.buildClassificationList()
+    const {classification_name} = req.body
+    const classData = await invModel.deleteClassificationName(classification_name)
+    if (classData) {
+    req.flash(
+      "notice",
+      `The classification was removed sucsessfully.`
+    )
+    res.status(201).render("inventory/management", {
+      title: "Inventory Manager",
+      nav,
+      header,
+      links,
+      classification,
+    })
+  } else {
+    req.flash("notice", "Sorry, failed to delete classification.")
+    res.status(501).render("inventory/delete-classification", {
+      title: "Delete classification Form",
+      nav,
+      header,
+      errors,
+    })
+  }
+
+  res.render("inventory/delete-classification.ejs", {
+    title: "Delete Classification Form",
+    nav,
+    header,
+    errors: null,
+  })
+}
+
 
 /* ****************************************
 *  Process inventory Name
