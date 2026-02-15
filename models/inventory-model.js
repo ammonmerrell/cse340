@@ -73,7 +73,7 @@ async function addInventoryItem(
 }
 
 /* *****************************
-*   Register new account
+*   Register new classification
 * *************************** */
 async function addClasificationName(classification_name){
   try {
@@ -83,6 +83,19 @@ async function addClasificationName(classification_name){
     return error.message
   }
 }
+/*****
+ * Delete classification name
+ ***** */
+async function deleteClassificationName(classification_name){
+  try {
+    const sql = "DELETE FROM public.classification WHERE (classification_name) VALUES ($1) RETURNING *"
+    return await pool.query(sql, [classification_name])
+  } catch(error){
+    return error.message
+  }
+}
+/***** */
+
 
 async function updateInventoryItem(
   inv_id,
@@ -132,4 +145,4 @@ return data
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInfoByClassificationId, addClasificationName, addInventoryItem, updateInventoryItem, deleteInventoryItem};
+module.exports = {getClassifications, getInventoryByClassificationId, getInfoByClassificationId, addClasificationName, addInventoryItem, updateInventoryItem, deleteInventoryItem, deleteClassificationName};
