@@ -13,7 +13,7 @@ router.get("/add-classification", util.checkBasicLogin, util.handleErrors(invCon
 router.get("/delete-classification", util.checkBasicLogin, util.handleErrors(invController.removeClassificationName))
 router.post(
     "/delete-classification", 
-    regValidate.delClassRules,
+    // regValidate.delClassRules,
     regValidate.checkclassData,
     util.handleErrors(invController.deleteClassificationName))
 // *****
