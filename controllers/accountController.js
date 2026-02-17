@@ -29,13 +29,14 @@ async function  buildLogin(req,res, next) {
 * ***** */
 async function registerUser(req, res, next) {
     let nav = await util.getNav()
-    let accData = accountData.account_firstname
+    
     let header = ""
     if(res.locals.loggedin){
         header += "<a title=\"Click to log out\" href=\"/account/logout\">Log Out</a\> </div\>"
     } else{
         header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
     }
+    let accData = accountData.account_firstname
     res.render("account/register", {
         title: "Register",
         header,
