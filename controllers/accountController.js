@@ -36,7 +36,7 @@ async function registerUser(req, res, next) {
     } else{
         header += "<a title=\"Click to log in\" href=\"/account/login\">My Account</a\>  </div\>"
     }
-    let accData = accountData.account_firstname
+    // let accData = accountData.account_firstname
     res.render("account/register", {
         title: "Register",
         header,
